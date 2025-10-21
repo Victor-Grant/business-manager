@@ -36,7 +36,7 @@ const styles = {
     borderRight: "none",
   },
   container: {
-    height: 35,
+    height: 30,
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
