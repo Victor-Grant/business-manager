@@ -3,7 +3,16 @@ import { Link } from "react-router-dom";
 
 const Auth = () => {
   return (
-    <div style={{ width: "100%", height: "100%", backgroundColor: "white" }}>
+    <div
+      style={{
+        width: "100%",
+        height: "100vh",
+        backgroundColor: "white",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <div
         style={{
           display: "flex",
@@ -16,7 +25,14 @@ const Auth = () => {
         }}
       >
         <Link
-          style={{ color: "white", backgroundColor: "blue", borderRadius: 7 }}
+          style={{
+            color: "white",
+            backgroundColor: "blue",
+            borderRadius: 7,
+            padding: 10,
+            textDecoration: "none",
+            border: "none",
+          }}
           to="/home"
         >
           Login

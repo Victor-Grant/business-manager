@@ -18,8 +18,9 @@ const styles = {
   sidebar: {
     display: "flex",
     flexDirection: "column",
-    minWidth: "150px",
+    minWidth: "200px",
     backgroundColor: "#f4f4f4",
+    borderRight: "1px solid #aaa",
   },
   mainContent: {
     display: "flex",
