@@ -78,6 +78,7 @@ const styles = {
     display: "flex",
     flexDirection: "row",
     height: "100vh",
+    justifyContent: "flex-end",
   },
   sidebar: {
     display: "flex",
@@ -88,12 +89,16 @@ const styles = {
     minWidth: "150px",
     backgroundColor: "#f4f4f4",
     borderRight: "1px solid #aaa",
+    position: "fixed",
+    top: 0,
+    left: 0,
+    height: "100vh",
   },
   mainContent: {
     display: "flex",
     flexDirection: "column",
     width: "83%",
-    minWidth: "550px",
+    minWidth: "850px",
   },
   link: {
     display: "flex",

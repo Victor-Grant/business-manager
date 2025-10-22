@@ -6,7 +6,7 @@ const RevenueViewCard = ({ totalRevenue }) => {
       <div style={styles.text}>
         <p>Total Revenue</p>
         <div style={{ display: "flex", gap: 0, flexDirection: "column" }}>
-          <p style={{ fontWeight: "bold" }}>{totalRevenue}</p>
+          <h2 style={{ fontWeight: "bold" }}>{totalRevenue}</h2>
           <p>Sold today</p>
         </div>
       </div>

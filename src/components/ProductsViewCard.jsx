@@ -6,7 +6,7 @@ const ProductsViewCard = ({ productAmount }) => {
       <div style={styles.text}>
         <p>Total Products</p>
         <div style={{ display: "flex", gap: 0, flexDirection: "column" }}>
-          <p style={{ fontWeight: "bold" }}>{productAmount}</p>
+          <h2 style={{ fontWeight: "bold" }}>{productAmount}</h2>
           <p>Active products in this store</p>
         </div>
       </div>

@@ -41,6 +41,9 @@ const styles = {
     gap: "10px",
     height: "50px",
     alignItems: "center",
+    position: "sticky",
+    top: 0,
+    backgroundColor: "white",
   },
   menu: {
     display: "flex",

@@ -4,9 +4,9 @@ const SalesViewCard = ({ totalSales }) => {
   return (
     <div style={styles.container}>
       <div style={styles.text}>
-        <p>Total Revenue</p>
+        <p>Total Sales</p>
         <div style={{ display: "flex", gap: 0, flexDirection: "column" }}>
-          <p style={{ fontWeight: "bold" }}>{totalSales}</p>
+          <h2 style={{ fontWeight: "bold" }}>{totalSales}</h2>
           <p>Sales made today</p>
         </div>
       </div>
