@@ -42,7 +42,7 @@ const styles = {
     padding: 20,
     borderRadius: 10,
     backgroundColor: "#f5f5f5",
-    width: 400,
+    width: 300,
     border: "1px solid #ccc",
     justifyContent: "space-between",
   },
