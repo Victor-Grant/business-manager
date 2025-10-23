@@ -1,6 +1,7 @@
 import React from "react";
 import TopBar from "../components/TopBar.jsx";
 import InfoBox from "../components/InfoBox.jsx";
+import StockList from "../components/StockList.jsx";
 
 const Stocks = () => {
   return (
@@ -12,6 +13,9 @@ const Stocks = () => {
           <InfoBox infoTitle="All Products" infoData="20 Items" />
         </div>
         <hr style={{ width: "100%" }} />
+        <div style={{ padding: 20 }}>
+          <StockList />
+        </div>
       </div>
     </div>
   );
