@@ -19,7 +19,7 @@ const addStocksData = async (data) => {
   store.add(data);
 };
 
-const getAllData = async () => {
+const getAllStocksData = async () => {
   const db = await openStockDatabase();
   const transaction = db.transaction("StockStore", "readonly");
   const store = transaction.objectStore("StockStore");
@@ -30,7 +30,7 @@ const getAllData = async () => {
   });
 };
 
-const updateData = async (id, updatedData) => {
+const updateStocksData = async (id, updatedData) => {
   const db = await openStockDatabase();
   const transaction = db.transaction("StockStore", "readwrite");
   const store = transaction.objectStore("StockStore");
@@ -41,4 +41,15 @@ const updateData = async (id, updatedData) => {
   });
 };
 
-const removeData = (id) => {};
+const removeStocksData = async (id) => {
+  const db = await openStockDatabase();
+  const transaction = db.transaction("StockStore", "readwrite");
+  const store = transaction.objectStore("StockStore");
+  return new Promise((resolve, reject) => {
+    const request = store.delete(id);
+    request.onsuccess = (event) => resolve(event.target.result);
+    request.onerror = (event) => reject(event.target.error);
+  });
+};
+
+export { addStocksData, getAllStocksData, updateStocksData, removeStocksData };
