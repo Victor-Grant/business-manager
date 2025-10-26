@@ -19,6 +19,15 @@ const addStocksData = async (data) => {
   store.add(data);
 };
 
-const getAllData = async () => {};
+const getAllData = async () => {
+  const db = await openStockDatabase();
+  const transaction = db.transaction("StockStore", "readonly");
+  const store = transaction.objectStore("StockStore");
+  return new Promise((resolve, reject) => {
+    const request = store.getAll();
+    request.onsuccess = (event) => resolve(event.target.result);
+    request.onerror = (event) => reject(event.target.error);
+  });
+};
 
 const removeData = (id) => {};
