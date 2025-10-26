@@ -11,7 +11,7 @@ const OrdersTab = () => {
           From <input style={styles.input} type="date" />
         </div>
         <div>
-          To
+          To{" "}
           <input
             style={styles.input}
             type="date"
@@ -51,6 +51,9 @@ const styles = {
   input: {
     fontSize: 15,
     lineHeight: "normal",
+    padding: 2,
+    borderRadius: 8,
+    border: "1px solid #ccc",
   },
 };
 
