@@ -3,6 +3,10 @@ import { useState } from "react";
 
 const AddStockModal = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [stockName, setStockName] = useState("");
+  const [stockDescription, setStockDescription] = useState("");
+  const [stockPrice, setStockPrice] = useState("");
+  const [stockQuantity, setStockQuantity] = useState("");
 
   const addStock = () => {
     // Logic to add stock goes here
@@ -24,6 +28,8 @@ const AddStockModal = () => {
                   type="text"
                   style={styles.input}
                   placeholder="eg. Headset"
+                  onChange={(e) => setStockName(e.target.value)}
+                  value={stockName}
                 />
               </label>
               <label style={{ display: "block", marginBottom: 10 }}>
@@ -32,6 +38,8 @@ const AddStockModal = () => {
                   type="text"
                   style={styles.input}
                   placeholder="Short description"
+                  onChange={(e) => setStockDescription(e.target.value)}
+                  value={stockDescription}
                 />
               </label>
               <label style={{ display: "block", marginBottom: 10 }}>
@@ -40,6 +48,18 @@ const AddStockModal = () => {
                   type="number"
                   style={styles.input}
                   placeholder="eg. $150"
+                  onChange={(e) => setStockPrice(e.target.value)}
+                  value={stockPrice}
+                />
+              </label>
+              <label style={{ display: "block", marginBottom: 10 }}>
+                <p>Stock Quantity:</p>
+                <input
+                  type="number"
+                  style={styles.input}
+                  placeholder="eg. 50"
+                  onChange={(e) => setStockQuantity(e.target.value)}
+                  value={stockQuantity}
                 />
               </label>
               <button style={styles.modalButton} onClick={addStock}>
