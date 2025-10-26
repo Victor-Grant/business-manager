@@ -18,19 +18,33 @@ const AddStockModal = () => {
           <div style={styles.modal}>
             <h2>Add New Stock</h2>
             <div>
-              <label>
-                Stock Name:
-                <input type="text" />
+              <label style={{ display: "block", marginBottom: 10 }}>
+                <p>Stock Name:</p>
+                <input
+                  type="text"
+                  style={styles.input}
+                  placeholder="eg. Headset"
+                />
               </label>
-              <label>
-                Stock Description:
-                <input type="text" />
+              <label style={{ display: "block", marginBottom: 10 }}>
+                <p>Stock Description:</p>
+                <input
+                  type="text"
+                  style={styles.input}
+                  placeholder="Short description"
+                />
               </label>
-              <label>
-                Stock Price:
-                <input type="number" />
+              <label style={{ display: "block", marginBottom: 10 }}>
+                <p>Stock Price:</p>
+                <input
+                  type="number"
+                  style={styles.input}
+                  placeholder="eg. $150"
+                />
               </label>
-              <button style={styles.modalButton}>Add</button>
+              <button style={styles.modalButton} onClick={addStock}>
+                Add
+              </button>
             </div>
           </div>
         </div>
@@ -57,14 +71,25 @@ const styles = {
     borderRadius: 8,
     width: "400px",
     boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+    display: "flex",
+    flexDirection: "column",
+    gap: 5,
   },
   modalButton: {
+    lineHeight: "normal",
     padding: "10px 20px",
     backgroundColor: "#09ff00ff",
     color: "#fff",
     border: "none",
     borderRadius: 10,
     cursor: "pointer",
+  },
+  input: {
+    width: "100%",
+    lineHeight: "normal",
+    padding: 8,
+    borderRadius: 8,
+    border: "1px solid #ccc",
   },
 };
 

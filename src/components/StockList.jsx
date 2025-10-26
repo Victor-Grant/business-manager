@@ -1,12 +1,16 @@
 import React from "react";
 import { stockItems } from "../utils";
+import AddStockModal from "./AddStockModal.jsx";
 
 const StockList = () => {
   return (
     <div style={styles.container}>
       <div style={styles.textHeading}>
-        <h3>Stocks</h3>
-        <p>Showing All Available Stocks</p>
+        <div>
+          <h3>Stocks</h3>
+          <p>Showing All Available Stocks</p>
+        </div>
+        <AddStockModal />
       </div>
       <div>
         <table style={{ width: "100%" }}>
@@ -61,7 +65,9 @@ const styles = {
   textHeading: {
     display: "flex",
     padding: "0 20px",
-    flexDirection: "column",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   dataFieldName: {
     padding: "5px 20px",
