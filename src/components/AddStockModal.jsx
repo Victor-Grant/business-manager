@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { openStockDatabase, addStocksData } from "../StocksDatabase.js";
 
 const AddStockModal = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,8 +9,19 @@ const AddStockModal = () => {
   const [stockPrice, setStockPrice] = useState("");
   const [stockQuantity, setStockQuantity] = useState("");
 
-  const addStock = () => {
-    // Logic to add stock goes here
+  const addStock = async () => {
+    const newStock = {
+      name: stockName,
+      description: stockDescription,
+      price: parseFloat(stockPrice),
+      quantity: parseInt(stockQuantity, 10),
+    };
+    //await openStockDatabase();
+    await addStocksData(newStock);
+    setStockName("");
+    setStockDescription("");
+    setStockPrice("");
+    setStockQuantity("");
     setIsOpen(false);
   };
   return (

@@ -1,5 +1,6 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { openStockDatabase } from "../StocksDatabase.js";
 import TopBar from "../components/TopBar.jsx";
 import ProductsViewCard from "../components/ProductsViewCard.jsx";
 import RevenueViewCard from "../components/RevenueViewCard.jsx";
@@ -8,6 +9,9 @@ import SoldItemsList from "../components/SoldItemsList.jsx";
 
 const Dashboard = () => {
   const [searchInput, setSearchInput] = useState("");
+  useEffect(() => {
+    openStockDatabase();
+  });
   return (
     <div style={styles.container}>
       <TopBar pageTitle={`Dashboard`} setValue={setSearchInput} />

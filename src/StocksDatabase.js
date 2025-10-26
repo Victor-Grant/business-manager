@@ -4,7 +4,10 @@ const openStockDatabase = () => {
     result.onupgradeneeded = (event) => {
       const db = event.target.result;
       if (!db.objectStoreNames.contains("StockStore")) {
-        db.createObjectStore("store", { keyPath: "id", autoIncrement: true });
+        db.createObjectStore("StockStore", {
+          keyPath: "id",
+          autoIncrement: true,
+        });
       }
     };
     result.onsuccess = (event) => resolve(event.target.result);
@@ -16,7 +19,11 @@ const addStocksData = async (data) => {
   const db = await openStockDatabase();
   const transaction = db.transaction("StockStore", "readwrite");
   const store = transaction.objectStore("StockStore");
-  store.add(data);
+  return new Promise((resolve, reject) => {
+    const request = store.add(data);
+    request.onsuccess = (event) => resolve(event.target.result);
+    request.onerror = (event) => reject(event.target.error);
+  });
 };
 
 const getAllStocksData = async () => {
@@ -52,4 +59,10 @@ const removeStocksData = async (id) => {
   });
 };
 
-export { addStocksData, getAllStocksData, updateStocksData, removeStocksData };
+export {
+  openStockDatabase,
+  addStocksData,
+  getAllStocksData,
+  updateStocksData,
+  removeStocksData,
+};
