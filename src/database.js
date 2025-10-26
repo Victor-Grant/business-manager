@@ -19,4 +19,6 @@ const addStocksData = async (data) => {
   store.add(data);
 };
 
+const getAllData = async () => {};
+
 const removeData = (id) => {};
