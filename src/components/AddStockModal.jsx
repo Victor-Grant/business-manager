@@ -7,7 +7,7 @@ const AddStockModal = () => {
   const [stockName, setStockName] = useState("");
   const [stockDescription, setStockDescription] = useState("");
   const [stockPrice, setStockPrice] = useState("");
-  const [stockQuantity, setStockQuantity] = useState("");
+  const [stockQuantity, setStockQuantity] = useState("1");
 
   const addStock = async () => {
     const newStock = {
@@ -21,7 +21,7 @@ const AddStockModal = () => {
     setStockName("");
     setStockDescription("");
     setStockPrice("");
-    setStockQuantity("");
+    setStockQuantity("1");
     setIsOpen(false);
   };
   return (
