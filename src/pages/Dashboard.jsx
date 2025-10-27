@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { openStockDatabase } from "../StocksDatabase.js";
+import { openOrdersDatabase } from "../OrdersDatabase.js";
 import TopBar from "../components/TopBar.jsx";
 import ProductsViewCard from "../components/ProductsViewCard.jsx";
 import RevenueViewCard from "../components/RevenueViewCard.jsx";
@@ -11,6 +12,7 @@ const Dashboard = () => {
   const [searchInput, setSearchInput] = useState("");
   useEffect(() => {
     openStockDatabase();
+    openOrdersDatabase();
   });
   return (
     <div style={styles.container}>
