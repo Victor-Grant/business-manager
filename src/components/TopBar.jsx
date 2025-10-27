@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "../components/SearchBar.jsx";
+import OrderModal from "./OrderModal.jsx";
 
 const TopBar = ({ setValue, pageTitle }) => {
   return (
@@ -11,6 +12,7 @@ const TopBar = ({ setValue, pageTitle }) => {
       </div>
       <div style={styles.menu}>
         <SearchBar setValue={setValue} />
+        <OrderModal />
         <Link
           style={{ textDecoration: "none", color: "black" }}
           to="/home/settings"

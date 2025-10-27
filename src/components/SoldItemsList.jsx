@@ -5,8 +5,13 @@ const SoldItemsList = () => {
   return (
     <div style={styles.ordersContainer}>
       <div style={styles.titleField}>
-        <h3 style={{ fontWeight: "normal" }}>All Items Sold</h3>
-        <p>Showing Results for Today</p>
+        <div>
+          <h3 style={{ fontWeight: "normal" }}>All Items Sold</h3>
+          <p>Showing Results for Today</p>
+        </div>
+        <div>
+          <button style={styles.button}>Print</button>
+        </div>
       </div>
       <div style={styles.items}>
         {soldItems.map((item) => (
@@ -42,12 +47,13 @@ const styles = {
   },
   titleField: {
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "row",
     borderBottom: "1px solid #ccc",
     padding: 15,
+    justifyContent: "space-between",
   },
   itemPrice: {
-    color: "#4caf50",
+    color: "#43a33fff",
     fontWeight: "bold",
     backgroundColor: "#e8f5e9",
     padding: "5px",
@@ -56,6 +62,16 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     width: "80px",
+  },
+  button: {
+    padding: "10px 40px",
+    backgroundColor: "#09ff00ff",
+    color: "white",
+    border: "none",
+    borderRadius: 10,
+    fontSize: 16,
+    cursor: "pointer",
+    lineHeight: "normal",
   },
 };
 

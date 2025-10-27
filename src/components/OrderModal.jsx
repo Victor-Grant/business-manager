@@ -3,15 +3,25 @@ import { useState } from "react";
 
 const OrderModal = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const confirmOrder = () => {
+    // Logic to confirm order goes here
+
+    setIsOpen(false);
+  };
   return (
     <div>
-      <button style={styles.modalButton}>New Order</button>
+      <button onClick={() => setIsOpen(true)} style={styles.modalButton}>
+        New Order
+      </button>
       {isOpen && (
         <div style={styles.container}>
           <div style={styles.modal}>
             <h2>New Order</h2>
             <div>
-              <button style={styles.modalButton}>Add</button>
+              <button onClick={confirmOrder} style={styles.modalButton}>
+                Confirm Order
+              </button>
             </div>
           </div>
         </div>
