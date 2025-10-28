@@ -8,6 +8,7 @@ const SearchModal = () => {
   const [searchObjects, setSearchObjects] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
   const [options, setOptions] = useState([]);
+  const [quantity, setQuantity] = useState("1");
 
   useEffect(() => {
     const getSearchObjects = async () => {
@@ -16,16 +17,13 @@ const SearchModal = () => {
       setSearchObjects(_searchObjects);
     };
 
-    console.log("Rendering");
-
     getSearchObjects();
   }, []);
 
   const selectItem = (item) => {
-    setSelectedItems([...selectedItems, item]);
+    setSelectedItems([...selectedItems, { ...item, quantity: 1 }]);
     setSearchQuery("");
     setOpenSearchModal(false);
-    console.log(selectedItems);
   };
 
   const removeItem = (id) => {
@@ -35,7 +33,9 @@ const SearchModal = () => {
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
     setOptions(
-      searchObjects.filter((item) => String(item.name).includes(e.target.value))
+      searchObjects.filter((item) =>
+        String(item.name).toLowerCase().includes(e.target.value.toLowerCase())
+      )
     );
     if (e.target.value.length > 0) {
       setOpenSearchModal(true);
@@ -44,47 +44,82 @@ const SearchModal = () => {
     }
   };
 
+  const changeQuantity = (e, index) => {
+    const arr = selectedItems;
+    arr[index].quantity = e.target.value;
+    setQuantity(e.target.value);
+    setSelectedItems(arr);
+  };
+
   return (
     <div>
-      <div>
-        {selectedItems.map((item) => (
+      <div style={styles.selectedItemsContainer}>
+        {selectedItems.map((item, index) => (
           <div style={styles.selectedItem} key={item?.id}>
-            <div>
-              <p>{item?.name}</p>
+            <div style={{ padding: 5 }}>
+              <p style={{ fontSize: "12px" }}>
+                {item?.name.length > 30
+                  ? item?.name.slice(0, 30) + "..."
+                  : item?.name}
+              </p>
             </div>
-            <input
-              type="number"
-              placeholder="Quantity"
-              value={selectedItems?.quantity}
-              style={{ width: "60px" }}
-            />
-            <button
-              style={styles.removeButton}
-              onClick={() => removeItem(item?.id)}
+            <div
+              style={{ display: "flex", flexDirection: "row", height: "100%" }}
             >
-              x
-            </button>
+              <div style={styles.price}>
+                <p>GHc{item.price}</p>
+              </div>
+              <input
+                type="number"
+                placeholder="Quantity"
+                value={quantity}
+                style={styles.quantity}
+                onChange={(e) => changeQuantity(e, index)}
+              />
+              <button
+                style={styles.removeButton}
+                onClick={() => removeItem(item?.id)}
+              >
+                x
+              </button>
+            </div>
           </div>
         ))}
       </div>
-      <input
-        type="text"
-        placeholder="Search..."
-        value={searchQuery}
-        onChange={(e) => handleSearchChange(e)}
-        style={styles.input}
-      />
-      <div>
-        {openSearchModal &&
-          options.map((data) => (
-            <button
-              onClick={() => selectItem(data)}
-              key={data.id}
-              style={styles.list}
-            >
-              {data?.name}
-            </button>
-          ))}
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchQuery}
+          onChange={(e) => handleSearchChange(e)}
+          style={styles.input}
+        />
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          {openSearchModal &&
+            options.map((data) => (
+              <button
+                onClick={() => selectItem(data)}
+                key={data.id}
+                style={styles.list}
+              >
+                {data?.name}
+              </button>
+            ))}
+        </div>
       </div>
     </div>
   );
@@ -102,22 +137,47 @@ const styles = {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-between",
+    height: "30px",
+    border: "1px solid black",
+    borderRadius: 5,
   },
   removeButton: {
-    padding: "5px 10px",
+    padding: "5px 15px",
     lineHeight: "normal",
     backgroundColor: "#ff4d4d",
     color: "#fff",
     border: "none",
-    borderRadius: 5,
+    borderRadius: "0 5px 5px 0",
     cursor: "pointer",
+    borderLeft: "1px solid black",
   },
   list: {
     padding: 2,
     lineHeight: "normal",
-    width: "100%",
+    width: "96%",
     border: "1px solid black",
     borderRadius: "none",
+  },
+  price: {
+    borderLeft: "1px solid black",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "2px",
+  },
+  quantity: {
+    all: "unset",
+    width: "40px",
+    border: "none",
+    textAlign: "center",
+    borderLeft: "1px solid black",
+  },
+  selectedItemsContainer: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 5,
+    padding: 5,
   },
 };
 
