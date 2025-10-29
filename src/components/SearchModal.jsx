@@ -56,7 +56,7 @@ const SearchModal = ({ setTotalPrice }) => {
   const changeQuantity = (e, index) => {
     const arr = selectedItems;
     arr[index].quantity = e.target.value;
-    setQuantity(e.target.value);
+    // setQuantity(e.target.value);
     setSelectedItems(arr);
     setTotalPrice(calculateTotalPrice(arr));
   };
@@ -65,7 +65,7 @@ const SearchModal = ({ setTotalPrice }) => {
     <div>
       <div style={styles.selectedItemsContainer}>
         {selectedItems.map((item, index) => (
-          <div style={styles.selectedItem} key={item?.id}>
+          <div style={styles.selectedItem} key={index}>
             <div style={{ padding: 5 }}>
               <p style={{ fontSize: "12px" }}>
                 {item?.name.length > 30
@@ -82,7 +82,7 @@ const SearchModal = ({ setTotalPrice }) => {
               <input
                 type="number"
                 placeholder="Quantity"
-                value={quantity}
+                value={item.quantity}
                 style={styles.quantity}
                 onChange={(e) => changeQuantity(e, index)}
               />
