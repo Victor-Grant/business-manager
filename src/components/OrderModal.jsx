@@ -4,6 +4,8 @@ import SearchModal from "./SearchModal.jsx";
 
 const OrderModal = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [totalPrice, setTotalPrice] = useState();
+  const [items, setItems] = useState();
 
   const confirmOrder = () => {
     // Logic to confirm order goes here
@@ -33,8 +35,11 @@ const OrderModal = () => {
                 </svg>
               </button>
             </div>
-            <div>
-              <SearchModal />
+            <div style={styles.modalContents}>
+              <SearchModal setTotalPrice={setTotalPrice} />
+              <div>
+                <p>Total Price: {totalPrice}</p>
+              </div>
               <button onClick={confirmOrder} style={styles.modalButton}>
                 Confirm Order
               </button>
@@ -91,6 +96,11 @@ const styles = {
     height: 25,
     padding: 5,
     cursor: "pointer",
+  },
+  modalContents: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 10,
   },
 };
 

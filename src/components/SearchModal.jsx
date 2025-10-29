@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { getAllStocksData } from "../StocksDatabase.js";
 
-const SearchModal = () => {
+const SearchModal = ({ setTotalPrice }) => {
   const [openSearchModal, setOpenSearchModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchObjects, setSearchObjects] = useState([]);
@@ -21,9 +21,19 @@ const SearchModal = () => {
   }, []);
 
   const selectItem = (item) => {
-    setSelectedItems([...selectedItems, { ...item, quantity: 1 }]);
+    const sItems = [...selectedItems, { ...item, quantity: 1 }];
+    setSelectedItems(sItems);
     setSearchQuery("");
     setOpenSearchModal(false);
+    setTotalPrice(calculateTotalPrice(sItems));
+  };
+
+  const calculateTotalPrice = (arr) => {
+    let price = 0;
+    for (let i = 0; i < arr.length; i++) {
+      price += arr[i].price * Number(arr[i].quantity);
+    }
+    return price;
   };
 
   const removeItem = (id) => {
@@ -32,11 +42,10 @@ const SearchModal = () => {
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
-    setOptions(
-      searchObjects.filter((item) =>
-        String(item.name).toLowerCase().includes(e.target.value.toLowerCase())
-      )
+    const opt = searchObjects.filter((item) =>
+      String(item.name).toLowerCase().includes(e.target.value.toLowerCase())
     );
+    setOptions(opt);
     if (e.target.value.length > 0) {
       setOpenSearchModal(true);
     } else {
@@ -49,6 +58,7 @@ const SearchModal = () => {
     arr[index].quantity = e.target.value;
     setQuantity(e.target.value);
     setSelectedItems(arr);
+    setTotalPrice(calculateTotalPrice(arr));
   };
 
   return (
