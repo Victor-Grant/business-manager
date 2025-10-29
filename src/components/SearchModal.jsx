@@ -2,13 +2,12 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { getAllStocksData } from "../StocksDatabase.js";
 
-const SearchModal = ({ setTotalPrice }) => {
+const SearchModal = ({ setTotalPrice, setItems }) => {
   const [openSearchModal, setOpenSearchModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchObjects, setSearchObjects] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
   const [options, setOptions] = useState([]);
-  const [quantity, setQuantity] = useState("1");
 
   useEffect(() => {
     const getSearchObjects = async () => {
@@ -26,6 +25,7 @@ const SearchModal = ({ setTotalPrice }) => {
     setSearchQuery("");
     setOpenSearchModal(false);
     setTotalPrice(calculateTotalPrice(sItems));
+    setItems(selectedItems);
   };
 
   const calculateTotalPrice = (arr) => {
@@ -37,7 +37,9 @@ const SearchModal = ({ setTotalPrice }) => {
   };
 
   const removeItem = (id) => {
-    setSelectedItems(selectedItems.filter((item) => item.id !== id));
+    const arr = selectedItems.filter((item) => item.id !== id);
+    setSelectedItems(arr);
+    setTotalPrice(calculateTotalPrice(arr));
   };
 
   const handleSearchChange = (e) => {

@@ -1,27 +1,52 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SearchModal from "./SearchModal.jsx";
+import { addOrders } from "../OrdersDatabase.js";
 
 const OrderModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [totalPrice, setTotalPrice] = useState();
   const [items, setItems] = useState();
+  const [orderNumbers, setOrderNumbers] = useState([]);
+  const [orderNumber, setOrderNumber] = useState();
+
+  const openModal = () => {
+    setIsOpen(true);
+    createOrderNumber();
+  };
 
   const confirmOrder = () => {
-    // Logic to confirm order goes here
-
+    const newOrder = {
+      totalPrice: parseFloat(totalPrice),
+      timestamp: Date.now(),
+      items,
+      orderNumber,
+    };
+    addOrders({ newOrder });
     setIsOpen(false);
+  };
+
+  const createOrderNumber = () => {
+    let num = Math.random() * 500;
+    if (num <= 400) {
+      num += 100;
+    }
+
+    if (orderNumbers.includes(num)) {
+      createOrderNumber();
+    }
+    setOrderNumber(num.toFixed(0));
   };
   return (
     <div>
-      <button onClick={() => setIsOpen(true)} style={styles.modalButton}>
+      <button onClick={openModal} style={styles.modalButton}>
         New Order
       </button>
       {isOpen && (
         <div style={styles.container}>
           <div style={styles.modal}>
             <div style={styles.modalHeader}>
-              <h2>New Order</h2>
+              <h2>New Order #{orderNumber}</h2>
               <button
                 style={styles.closeButton}
                 onClick={() => setIsOpen(false)}
@@ -36,7 +61,7 @@ const OrderModal = () => {
               </button>
             </div>
             <div style={styles.modalContents}>
-              <SearchModal setTotalPrice={setTotalPrice} />
+              <SearchModal setTotalPrice={setTotalPrice} setItems={setItems} />
               <div>
                 <p>Total Price: GHc{totalPrice}</p>
               </div>
