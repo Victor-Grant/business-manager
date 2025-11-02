@@ -22,8 +22,8 @@ const Dashboard = () => {
       setTotalProducts(allStocks.length);
       const today = [];
       for (let i = 0; i < allOrders.length; i++) {
-        if (allOrders[i].newOrder.timestamp - getHourMark() <= 86400000) {
-          today.push({ ...allOrders[i].newOrder, id: allOrders[i].id });
+        if (allOrders[i].timestamp - getHourMark() <= 86400000) {
+          today.push({ ...allOrders[i] });
         }
       }
       let _salesAmount = 0;

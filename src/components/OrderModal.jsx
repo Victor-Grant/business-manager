@@ -22,7 +22,7 @@ const OrderModal = () => {
       items,
       orderNumber,
     };
-    addOrders({ newOrder });
+    addOrders({ ...newOrder });
     setIsOpen(false);
   };
 
