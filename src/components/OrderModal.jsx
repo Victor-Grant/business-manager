@@ -5,7 +5,7 @@ import { addOrders } from "../OrdersDatabase.js";
 
 const OrderModal = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [totalPrice, setTotalPrice] = useState();
+  const [totalPrice, setTotalPrice] = useState(0);
   const [items, setItems] = useState();
   const [orderNumbers, setOrderNumbers] = useState([]);
   const [orderNumber, setOrderNumber] = useState();
@@ -24,6 +24,7 @@ const OrderModal = () => {
     };
     addOrders({ ...newOrder });
     setIsOpen(false);
+    setTotalPrice(0);
   };
 
   const createOrderNumber = () => {

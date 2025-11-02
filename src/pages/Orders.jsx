@@ -16,9 +16,9 @@ const Orders = () => {
       setAllOrders(data);
       let num = 0;
       for (let i = 0; i < data.length; i++) {
-        num += data[i].items.length;
+        num += data[i]?.items.length;
       }
-      console.log(data[5].items);
+      console.log(data);
       setItemsCount(num);
     };
 

@@ -25,7 +25,7 @@ const SearchModal = ({ setTotalPrice, setItems }) => {
     setSearchQuery("");
     setOpenSearchModal(false);
     setTotalPrice(calculateTotalPrice(sItems));
-    setItems(selectedItems);
+    setItems(sItems);
   };
 
   const calculateTotalPrice = (arr) => {
