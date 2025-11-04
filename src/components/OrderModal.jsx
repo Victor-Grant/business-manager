@@ -64,7 +64,9 @@ const OrderModal = () => {
             <div style={styles.modalContents}>
               <SearchModal setTotalPrice={setTotalPrice} setItems={setItems} />
               <div>
-                <p>Total Price: GHc{totalPrice}</p>
+                <p>
+                  Total Price: GH{"₵"} {totalPrice}
+                </p>
               </div>
               <button onClick={confirmOrder} style={styles.modalButton}>
                 Confirm Order

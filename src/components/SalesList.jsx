@@ -1,12 +1,23 @@
 import React from "react";
 import { soldItems } from "../utils";
+import { useState, useEffect } from "react";
+import { getAllOrders } from "../OrdersDatabase";
 
 const SalesList = ({ startDate, endDate }) => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const dat = await getAllOrders();
+      setData(dat);
+    };
+    fetchData();
+  }, []);
   return (
     <div style={styles.ordersContainer}>
       <div style={styles.titleField}>
         <div>
-          <h3 style={{ fontWeight: "normal" }}>All Items Sold</h3>
+          <h3 style={{ fontWeight: "normal" }}>All Sales Made</h3>
           <p>Showing Results for Today</p>
         </div>
         <div>
@@ -14,11 +25,11 @@ const SalesList = ({ startDate, endDate }) => {
         </div>
       </div>
       <div style={styles.items}>
-        {soldItems.map((item) => (
+        {data.map((item) => (
           <div style={styles.item} key={item.id}>
-            <p>{item.name}</p>
+            <p>{`${item.items.length} items`}</p>
             <p>{new Date(item.timestamp).toDateString()}</p>
-            <div style={styles.itemPrice}>{item.price}</div>
+            <div style={styles.itemPrice}>{`GH${"₵"} ${item.totalPrice}`}</div>
           </div>
         ))}
       </div>

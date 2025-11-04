@@ -1,7 +1,22 @@
 import React from "react";
-import { soldItems } from "../utils";
+import { useState, useEffect } from "react";
+import { getAllOrders } from "../OrdersDatabase";
 
 const SoldItemsList = () => {
+  const [soldItems, setSoldItems] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const dat = await getAllOrders();
+      const items = [];
+      for (let i = 0; i < dat.length; i++) {
+        for (let j = 0; j < dat[i].items.length; j++) {
+          items.push({ ...dat[i].items[j], timestamp: dat[i].timestamp });
+        }
+      }
+      setSoldItems(items);
+    };
+    fetchData();
+  }, []);
   return (
     <div style={styles.ordersContainer}>
       <div style={styles.titleField}>
@@ -18,7 +33,7 @@ const SoldItemsList = () => {
           <div style={styles.item} key={item.id}>
             <p>{item.name}</p>
             <p>{new Date(item.timestamp).toDateString()}</p>
-            <div style={styles.itemPrice}>{item.price}</div>
+            <div style={styles.itemPrice}>{`GH${"₵"} ${item.price}`}</div>
           </div>
         ))}
       </div>

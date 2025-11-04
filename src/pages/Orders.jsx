@@ -18,7 +18,6 @@ const Orders = () => {
       for (let i = 0; i < data.length; i++) {
         num += data[i]?.items.length;
       }
-      console.log(data);
       setItemsCount(num);
     };
 
